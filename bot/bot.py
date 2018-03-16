@@ -9,4 +9,4 @@ if config['Token'] is not None:
 else:
     g = Github(config['User'], config['Password'])
  
-g.get_user(config['org']).get_repo(config['repo']).create_issue(sys.argv[1], sys.argv[2], GithubObject.NotSet, GithubObject.NotSet,  GithubObject.NotSet, sys.argv[3].split(','))
+g.get_user(config['org']).get_repo(config['repo']).create_issue(sys.argv[1], sys.argv[2], GithubObject.NotSet, GithubObject.NotSet,  sys.argv[3].split(','), sys.argv[4].split(','))
