@@ -7,8 +7,7 @@ config = json.load(open('config.json'))
 g = Github(config['Token'])
 
 try:
-    user = g.get_organizationr(config['org'])
-
+    user = g.get_organization(config['org'])
 except:
     user = g.get_user(config['User'])
 
