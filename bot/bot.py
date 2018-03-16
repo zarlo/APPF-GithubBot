@@ -4,10 +4,7 @@ from github import Github, GithubObject
 
 config = json.load(open('config.json'))
 
-if config['Token'] is not None:
-    g = Github(config['Token'])
-else:
-    g = Github(config['User'], config['Password'])
+g = Github(config['Token'])
 
 try:
     user = g.get_organizationr(config['org'])
