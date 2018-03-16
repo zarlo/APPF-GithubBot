@@ -9,10 +9,11 @@ if config['Token'] is not None:
 else:
     g = Github(config['User'], config['Password'])
 
-if config['org'] is not None:
-    user = g.get_user(config['User'])
-else:
+try:
     user = g.get_organizationr(config['org'])
+
+except:
+    user = g.get_user(config['User'])
 
 repo = user.get_repo(config['repo'])
 
