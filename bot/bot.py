@@ -17,4 +17,6 @@ except:
 
 repo = user.get_repo(config['repo'])
 
-repo.create_issue(sys.argv[1], sys.argv[2], GithubObject.NotSet, GithubObject.NotSet,  sys.argv[3].split(','), sys.argv[4].split(','))
+issue = repo.create_issue(sys.argv[1], sys.argv[2], GithubObject.NotSet, GithubObject.NotSet,  sys.argv[3].split(','), sys.argv[4].split(','))
+
+print(issue.number)
