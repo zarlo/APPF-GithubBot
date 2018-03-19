@@ -1,18 +1,28 @@
+#!/usr/bin/env python3
 import sys
 import json
 from github import Github, GithubObject
 
 config = json.load(open('config.json'))
 
-g = Github(config['Token'])
+g = Github(config['token'])
 
 try:
     user = g.get_organization(config['org'])
 except:
-    user = g.get_user(config['User'])
+    user = g.get_user(config['user'])
 
 repo = user.get_repo(config['repo'])
+title = sys.argv[1]
 
-issue = repo.create_issue(sys.argv[1], sys.argv[2], GithubObject.NotSet, GithubObject.NotSet,  sys.argv[3].split(','), sys.argv[4].split(','))
+kwargs = {
+    "body": sys.argv[2],
+    "labels": sys.argv[3].split(',')
+}
+if "," in sys.argv[4]:
+    kwargs["assignees"] = sys.argv[4].split(',')
+else:
+    kwargs["assignee"] = sys.argv[4].strip()
+issue = repo.create_issue(title, **kwargs)
 
 print(issue.number)
